@@ -12,10 +12,20 @@ app.listen(port, () => {
 //   res.send("response sent successfully");
 // });
 
-app.get("/",(req,res)=>{
-    res.send("root path");
-})
+app.get("/", (req, res) => {
+  res.send("root path");
+});
 
-app.get("/search",(req,res)=>{
-    res.send("search path");
-})
+app.get("/search", (req, res) => {
+  console.log(req.query);
+  const { p } = req.query;
+  if (!p) {
+    res.send("no search results");
+  }
+  res.send("search path for " + p);
+});
+
+app.get("/:username/:id", (req, res) => {
+  console.log(req.params);
+  res.send("username page");
+});
